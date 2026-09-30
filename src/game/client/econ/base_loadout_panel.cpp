@@ -136,13 +136,20 @@ void CBaseLoadoutPanel::SetBorderForItem( CItemModelPanel *pItemPanel, bool bMou
 		int iRarity = 0;
 		if ( pItemPanel->HasItem() && cl_showbackpackrarities.GetBool() ) 
 		{
-			iRarity = pItemPanel->GetItem()->GetItemQuality() ;
+			iRarity = pItemPanel->GetItem()->GetItemQuality();
 
 			uint8 nRarity = pItemPanel->GetItem()->GetItemDefinition()->GetRarity();
 			if ( ( nRarity != k_unItemRarity_Any ) && ( iRarity != AE_SELFMADE ) && ( iRarity != AE_UNUSUAL ) )
 			{
-				// translate this quality to rarity
-				iRarity = nRarity + AE_RARITY_DEFAULT;
+				if (pItemPanel->GetItem()->BIsUnusual())
+				{
+					iRarity = AE_UNUSUAL;
+				}
+				else
+				{
+					// translate this quality to rarity
+					iRarity = nRarity + AE_RARITY_DEFAULT;
+				}
 			}
 		}
 

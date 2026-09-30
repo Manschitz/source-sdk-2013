@@ -4309,6 +4309,10 @@ int	CBackpackPanel::GetItemQualityForBorder( CItemModelPanel* pItemPanel ) const
 		uint8 nRarity = pItemPanel->GetItem()->GetRarity();
 		if ( ( nRarity != k_unItemRarity_Any ) && ( pItemPanel->GetItem()->GetItemQuality() != AE_SELFMADE ) && ( pItemPanel->GetItem()->GetItemQuality() != AE_UNUSUAL ) )
 		{
+			if (pItemPanel->GetItem()->BIsUnusual())
+			{
+				return AE_UNUSUAL;
+			}
 			// translate this quality to rarity
 			return nRarity + AE_RARITY_DEFAULT;
 		}

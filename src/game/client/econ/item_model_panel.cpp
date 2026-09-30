@@ -2668,7 +2668,14 @@ void CItemModelPanel::UpdateDescription( bool bIsToolTip /* = false */ )
 		EEconItemQuality eQuality = (EEconItemQuality)m_ItemData.GetItemQuality();
 		if ( pszRarityColor && ( eQuality != AE_SELFMADE ) && ( eQuality != AE_UNUSUAL ) )
 		{
-			m_pItemNameLabel->SetColorStr( pszRarityColor );
+			if (m_ItemData.BIsUnusual())
+			{
+				m_pItemNameLabel->SetColorStr(EconQuality_GetColorString(AE_UNUSUAL));
+			}
+			else
+			{
+				m_pItemNameLabel->SetColorStr( pszRarityColor );
+			}
 		}
 		else 
 		{

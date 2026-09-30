@@ -1343,6 +1343,10 @@ void ClientModeShared::FireGameEvent( IGameEvent *event )
 					if ( pItemRarity )
 					{
 						attrib_colors_t colorRarity = pItemRarity->GetAttribColor();
+						if (bIsUnusual)
+						{
+							colorRarity = ATTRIB_COL_UNUSUAL;
+						}
 						vgui::HScheme scheme = vgui::scheme()->GetScheme( "ClientScheme" );
 						vgui::IScheme *pScheme = vgui::scheme()->GetIScheme( scheme );
 						Color color = pScheme->GetColor( GetColorNameForAttribColor( colorRarity ), Color( 255, 255, 255, 255 ) );
